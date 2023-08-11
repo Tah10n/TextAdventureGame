@@ -47,7 +47,8 @@
 
 <p>Имя игрока: <%= request.getSession().getAttribute("playerName") %>
 </p>
-<p><%= request.getAttribute("game")%></p>
+<p>гномы встречены:<%= game.isDwarfsMet()%></p>
+<p>игра закончена:<%= game.isGameEnded()%></p>
 
 </body>
 </html>

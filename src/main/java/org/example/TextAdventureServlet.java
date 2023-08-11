@@ -13,24 +13,27 @@ public class TextAdventureServlet extends HttpServlet {
 
     @Override
     public void init() {
-        game = new TextAdventureGame(new Scene(Location.HOBBITON));
+        game = new TextAdventureGame();
     }
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        if (game.isGameEnded()) {
+            game = new TextAdventureGame();
+        }
+
         String action = request.getParameter("input");
-        String description = "";
-        String location = "";
+        String description;
+        Location location = game.getCurrentScene().getLocation();
         if (action == null) {
             description = "Выберите действие, " + request.getSession().getAttribute("playerName");
         } else {
-            Scene curScene = game.travelToScene(action);
-            game.setCurSceneAndLocation(curScene);
-            description = curScene.getDescription();
-            location = game.getCurrentLocation().getTitle();
+            Scene newScene = game.changeScene(action);
+            description = newScene.getDescription();
+            location = newScene.getLocation();
         }
 
-        request.setAttribute("location", location);
+        request.setAttribute("location", location.getTitle());
         request.setAttribute("description", description);
         request.setAttribute("game", game);
 

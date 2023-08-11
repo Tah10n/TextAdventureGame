@@ -12,7 +12,7 @@ public enum Location {
         return title;
     }
 
-    private Location(String title) {
+    Location(String title) {
         this.title = title;
     }
 

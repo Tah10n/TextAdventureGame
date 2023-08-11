@@ -13,25 +13,26 @@
 <div class="container">
     <h1>Добро пожаловать в путешествие по Средиземью!</h1>
     <p> Готов ли ты отправиться в удивительное приключение?</p>
-    <p> Тебя ждут опасные враги, таинственные существа и невероятные открытия!</p>
-    <p> Великое приключение начинается прямо сейчас!</p>
+
     <br>
     <p> Введи свое имя:</p>
-    <input type="text" id="name" name="name" required minlength="3" maxlength="10" size="10" placeholder="Незнакомец"
+    <input type="text" id="name" name="name" required minlength="3" maxlength="10" size="10" placeholder="Бильбо"
            onchange='eventForm(this.value)'/><br><br>
     <br>
     <a href="/game">Начать путешествие</a>
 </div>
 
 <script>
-    var name = "Незнакомец"
+    var name = "Бильбо"
 
     function eventForm(value) {
         name = value;
     }
 
 </script>
+
 <%
+
     session = request.getSession();
     String name = "<script>document.writeln(name)</script>";
     session.setAttribute("playerName", name);

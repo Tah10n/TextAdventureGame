@@ -20,17 +20,17 @@
 
     <%
         TextAdventureGame game = (TextAdventureGame) request.getAttribute("game");
-        if (!game.isDragonDefeated()) {
 
-            Scene curScene = game.getCurScene();
-            List<String> actions = curScene.getActions();
-            for (String action : actions) {
+        Scene curScene = game.getCurrentScene();
+        List<String> actions = curScene.getActions();
+        for (String action : actions) {
 
-                out.println("<a href = \"/game?input=" + action + "\">" + action + "</a ><br><br>");
+            out.println("<a href = \"/game?input=" + action + "\">" + action + "</a ><br><br>");
 
-            }
+        }
 
-        } else {
+        if (game.isGameEnded()) {
+
     %>
     <a href="/index.jsp">Начать заново</a>
     <br>
@@ -41,14 +41,13 @@
 
 
 <br>
-<%
-
-%>
+<p>Статистика:</p>
 <p><%= request.getSession().getId() %>
 </p>
-<p><%= request.getSession().getAttribute("playerName") %>
-</p>
 
+<p>Имя игрока: <%= request.getSession().getAttribute("playerName") %>
+</p>
+<p><%= request.getAttribute("game")%></p>
 
 </body>
 </html>

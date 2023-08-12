@@ -17,7 +17,7 @@ public class TextAdventureServlet extends HttpServlet {
     }
 
     @Override
-    public void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+    public void doGet(HttpServletRequest request, HttpServletResponse response) {
         if (game.isGameEnded()) {
             game = new TextAdventureGame();
         }
@@ -37,7 +37,13 @@ public class TextAdventureServlet extends HttpServlet {
         request.setAttribute("description", description);
         request.setAttribute("game", game);
 
-        request.getRequestDispatcher("/game.jsp").forward(request, response);
+        try {
+            request.getRequestDispatcher("/game.jsp").forward(request, response);
+        } catch (ServletException e) {
+            throw new RuntimeException(e);
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
     }
 
     public void setGame(TextAdventureGame game) {

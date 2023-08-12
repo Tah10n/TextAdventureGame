@@ -10,11 +10,23 @@
     <title>Text Adventure Game</title>
     <link rel="stylesheet" href="styles.css">
 </head>
+<style>
+    <%
+    if(request.getAttribute("location") == "Хоббитон") {
+    out.print("body {background-image: url(\"/resources/Hobbiton.jpg\"); background-size: cover; background-repeat: no-repeat;}");
+    }
+    if(request.getAttribute("location") == "Таверна") {
+    out.print("body {background-image: url(\"/resources/Tavern.jpg\"); background-size: cover; background-repeat: no-repeat;}");
+    }
+    if(request.getAttribute("location") == "Одинокая гора") {
+    out.print("body {background-image: url(\"/resources/Mountain.jpg\"); background-size: cover; background-repeat: no-repeat;}");
+    }
+%>
+</style>
 <body>
 <div class="container">
 
-    <h1><%= request.getAttribute("location") %>
-    </h1>
+
     <p><%= request.getAttribute("description") %>
     </p>
 
@@ -47,8 +59,10 @@
 
 <p>Имя игрока: <%= request.getSession().getAttribute("playerName") %>
 </p>
-<p>гномы встречены:<%= game.isDwarfsMet()%></p>
-<p>игра закончена:<%= game.isGameEnded()%></p>
+<p>гномы встречены:<%= game.isDwarfsMet()%>
+</p>
+<p>игра закончена:<%= game.isGameEnded()%>
+</p>
 
 </body>
 </html>

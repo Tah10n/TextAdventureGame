@@ -1,5 +1,4 @@
 import org.example.Location;
-import org.example.Scene;
 import org.example.TextAdventureGame;
 import org.example.TextAdventureServlet;
 import org.junit.jupiter.api.BeforeEach;
@@ -7,7 +6,6 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.Mock;
 import org.mockito.Mockito;
-import org.mockito.MockitoAnnotations;
 import org.mockito.Spy;
 import org.mockito.junit.jupiter.MockitoExtension;
 
@@ -17,7 +15,6 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
-import java.util.Collections;
 
 
 @ExtendWith(MockitoExtension.class)

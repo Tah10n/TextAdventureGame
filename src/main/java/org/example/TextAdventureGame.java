@@ -5,10 +5,10 @@ import java.util.Random;
 public class TextAdventureGame {
 
     private final SceneContainer sceneContainer = new SceneContainer();
+    private final Random random = new Random();
     private Scene currentScene;
     private boolean isDwarfsMet = false;
     private boolean gameEnded = false;
-    private Random random = new Random();
 
     public TextAdventureGame() {
         resetGame();
@@ -22,9 +22,6 @@ public class TextAdventureGame {
 
     }
 
-    public void setRandom(Random random) {
-        this.random = random;
-    }
 
     public Scene getCurrentScene() {
         return currentScene;
@@ -40,6 +37,7 @@ public class TextAdventureGame {
 
     public Scene changeScene(String action) {
         Scene outScene = sceneContainer.getScene(action.toLowerCase(), 0);
+
         if (action.equalsIgnoreCase("выпить пива")) {
             isDwarfsMet = false;
         }
@@ -48,10 +46,9 @@ public class TextAdventureGame {
             isDwarfsMet = true;
         }
 
-        if (action.equalsIgnoreCase("пойти к одинокой горе")) {
-            if (isDwarfsMet) {
-                outScene = sceneContainer.getScene(action.toLowerCase(), 1);
-            }
+        if (action.equalsIgnoreCase("пойти к одинокой горе") && (isDwarfsMet)) {
+            outScene = sceneContainer.getScene(action.toLowerCase(), 1);
+
         }
 
         if (action.equalsIgnoreCase("рискнуть и забрать сокровища у дракона")) {

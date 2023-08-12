@@ -12,8 +12,7 @@ body {
     /*background-image: url("/resources/background-image-opacity.png");*/
     /*background-size: cover;*/
     /*background-repeat: no-repeat;*/
-    background: linear-gradient(#f7f7f7,#FAEBD7),url("/resources/background-image-opacity.png") center/cover;
-    background-blend-mode: overlay;
+
 }
 
 .container {

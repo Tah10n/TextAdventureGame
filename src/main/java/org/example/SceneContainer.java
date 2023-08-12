@@ -5,7 +5,7 @@ import java.util.*;
 public class SceneContainer {
     private final Map<String, List<Scene>> scenes = new HashMap<>();
 
-    {
+    public SceneContainer() {
         scenes.put("пойти к таверне", Arrays.asList(
                 new Scene(Location.TAVERN,
                         "Вы находитесь в таверне 'Подвесной Котел'.",
@@ -59,6 +59,15 @@ public class SceneContainer {
     }
 
     public Scene getScene(String action, int sceneNumber) {
+        if(action.equalsIgnoreCase("Не обращать на него внимания")) {
+            return scenes.get("пойти в хоббитон").get(0);
+        }
+        if(action.equalsIgnoreCase("Не рисковать")) {
+            return scenes.get("Пойти к таверне").get(0);
+        }
+        if(action.equalsIgnoreCase("Отказаться")) {
+            return scenes.get("пойти в хоббитон").get(0);
+        }
         return scenes.get(action).get(sceneNumber);
     }
 

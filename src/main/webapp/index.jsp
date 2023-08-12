@@ -9,6 +9,12 @@
     <title>Text Adventure Game</title>
     <link rel="stylesheet" href="styles.css">
 </head>
+<style>
+    body {background-image: url("/resources/background-image-opacity.png");
+        background-size: cover;
+        background-repeat: no-repeat;}
+
+</style>
 <body>
 <div class="container">
     <h1>Добро пожаловать в путешествие по Средиземью!</h1>

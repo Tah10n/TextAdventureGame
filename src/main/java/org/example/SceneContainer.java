@@ -2,7 +2,7 @@ package org.example;
 
 import java.util.*;
 
-public class SceneFactory {
+public class SceneContainer {
     private final Map<String, List<Scene>> scenes = new HashMap<>();
 
     {

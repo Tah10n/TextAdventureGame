@@ -4,10 +4,11 @@ import java.util.Random;
 
 public class TextAdventureGame {
 
+    private final SceneContainer sceneContainer = new SceneContainer();
     private Scene currentScene;
     private boolean isDwarfsMet = false;
     private boolean gameEnded = false;
-    private final SceneFactory sceneFactory = new SceneFactory();
+    private Random random = new Random();
 
     public TextAdventureGame() {
         resetGame();
@@ -15,10 +16,14 @@ public class TextAdventureGame {
 
     }
 
-    private void resetGame() {
+    public void resetGame() {
         gameEnded = false;
         isDwarfsMet = false;
 
+    }
+
+    public void setRandom(Random random) {
+        this.random = random;
     }
 
     public Scene getCurrentScene() {
@@ -28,10 +33,13 @@ public class TextAdventureGame {
     public boolean isGameEnded() {
         return gameEnded;
     }
-    public boolean isDwarfsMet() { return isDwarfsMet;}
+
+    public boolean isDwarfsMet() {
+        return isDwarfsMet;
+    }
 
     public Scene changeScene(String action) {
-        Scene outScene = sceneFactory.getScene(action.toLowerCase(), 0);
+        Scene outScene = sceneContainer.getScene(action.toLowerCase(), 0);
         if (action.equalsIgnoreCase("выпить пива")) {
             isDwarfsMet = false;
         }
@@ -41,19 +49,20 @@ public class TextAdventureGame {
         }
 
         if (action.equalsIgnoreCase("пойти к одинокой горе")) {
-            if(isDwarfsMet) {
-                outScene = sceneFactory.getScene(action.toLowerCase(), 1);
+            if (isDwarfsMet) {
+                outScene = sceneContainer.getScene(action.toLowerCase(), 1);
             }
         }
 
         if (action.equalsIgnoreCase("рискнуть и забрать сокровища у дракона")) {
-            Random random = new Random();
+
             int chance = random.nextInt(10);
 
-            if(chance > 8) {
-                gameEnded = true;
-                outScene = sceneFactory.getScene(action.toLowerCase(), 1);
+            if (chance > 8) {
+
+                outScene = sceneContainer.getScene(action.toLowerCase(), 1);
             }
+            gameEnded = true;
         }
 
         this.currentScene = outScene;

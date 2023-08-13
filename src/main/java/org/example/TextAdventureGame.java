@@ -48,7 +48,6 @@ public class TextAdventureGame {
 
         if (action.equalsIgnoreCase("пойти к одинокой горе") && (isDwarfsMet)) {
             outScene = sceneContainer.getScene(action.toLowerCase(), 1);
-
         }
 
         if (action.equalsIgnoreCase("рискнуть и забрать сокровища у дракона")) {

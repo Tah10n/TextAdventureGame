@@ -1,4 +1,5 @@
 import org.example.Scene;
+import org.example.SceneContainer;
 import org.example.TextAdventureGame;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -8,12 +9,13 @@ import static org.junit.jupiter.api.Assertions.*;
 public class TextAdventureGameTest {
 
     private TextAdventureGame game;
+    private SceneContainer container;
 
 
     @BeforeEach
     public void setUp() {
         game = new TextAdventureGame();
-
+        container = new SceneContainer();
     }
 
     @Test
@@ -25,42 +27,65 @@ public class TextAdventureGameTest {
 
     @Test
     public void testChangeSceneDrinkBeer() {
-        Scene scene = game.changeScene("выпить пива");
+        String action = "выпить пива";
+        Scene scene = game.changeScene(action);
         assertFalse(game.isDwarfsMet());
-        assertEquals(scene, game.getCurrentScene());
+        assertEquals(scene, container.getScene(action, 0));
     }
 
     @Test
     public void testChangeSceneWaitForFriends() {
-        Scene scene = game.changeScene("дождаться друзей");
+        String action = "дождаться друзей";
+        Scene scene = game.changeScene(action);
         assertTrue(game.isDwarfsMet());
-        assertEquals(scene, game.getCurrentScene());
+        assertEquals(scene, container.getScene(action, 0));
     }
 
     @Test
+    public void testChangeSceneGoToTavern() {
+
+        String action = "пойти в таверну";
+        Scene scene = game.changeScene(action);
+
+        assertEquals(scene, container.getScene(action, 0));
+    }
+    @Test
     public void testChangeSceneGoToLonelyMountainWithoutDwarfs() {
 
-        Scene scene = game.changeScene("пойти к одинокой горе");
+        String action = "пойти к одинокой горе";
+        Scene scene = game.changeScene(action);
         assertFalse(game.isDwarfsMet());
 
-        assertEquals(scene, game.getCurrentScene());
+        assertEquals(scene, container.getScene(action, 0));
     }
 
     @Test
     public void testChangeSceneGoToLonelyMountainWithDwarfs() {
         game.changeScene("дождаться друзей");
-        Scene scene = game.changeScene("пойти к одинокой горе");
+        String action = "пойти к одинокой горе";
+        Scene scene = game.changeScene(action);
         assertTrue(game.isDwarfsMet());
-        assertEquals(scene, game.getCurrentScene());
+        assertEquals(scene, container.getScene(action, 1));
     }
 
 
     @Test
     public void testChangeSceneEndGame() {
 
-        Scene scene = game.changeScene("рискнуть и забрать сокровища у дракона");
+        String action = "рискнуть и забрать сокровища у дракона";
+        Scene scene = game.changeScene(action);
         assertTrue(game.isGameEnded());
-        assertEquals(scene, game.getCurrentScene());
+        assertEquals(scene, container.getScene(action, 0));
     }
+
+    @Test
+    public void testChangeSceneUnknownAction() {
+        String action = "unknown";
+
+        Scene scene = game.changeScene(action);
+
+        assertEquals(scene, container.getScene(action, 0));
+    }
+
 
 }

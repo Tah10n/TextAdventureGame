@@ -2,7 +2,6 @@
 
 body {
     font-family: 'Arial', sans-serif;
-    background-color: #f7f7f7;
     margin: 0;
     padding: 0;
     display: flow;
@@ -12,6 +11,7 @@ body {
     /*background-image: url("/resources/background-image-opacity.png");*/
     /*background-size: cover;*/
     /*background-repeat: no-repeat;*/
+    /*background: #f7f7f7 radial-gradient(ellipse at top, white, transparent);*/
 
 }
 
@@ -23,9 +23,6 @@ body {
     padding-right: 16px;
     padding-top: 50px;
     text-align: center;
-    background: radial-gradient(ellipse at center,white,transparent);
-
-
 }
 
 h1 {

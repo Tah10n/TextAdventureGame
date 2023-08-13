@@ -8,8 +8,11 @@ public class SceneContainer {
     public SceneContainer() {
         scenes.put("пойти к таверне", Arrays.asList(
                 new Scene(Location.TAVERN,
-                        "Вы находитесь в таверне 'Подвесной Котел'.",
-                        List.of("Выпить пива", "Пойти к Одинокой горе", "Пойти в Хоббитон"))));
+                        "Вы находитесь в таверне 'Зеленый дракон'.",
+                        List.of("Выпить пива", "Пойти к Одинокой горе", "Пойти в Хоббитон")),
+                new Scene(Location.TAVERN,
+                        "Вы находитесь в таверне 'Зеленый дракон'.",
+                        List.of("Выпить пива", "Пойти к Одинокой горе"))));
 
         scenes.put("пойти к одинокой горе", Arrays.asList(
                 new Scene(Location.LONELY_MOUNTAIN,
@@ -59,13 +62,11 @@ public class SceneContainer {
     }
 
     public Scene getScene(String action, int sceneNumber) {
-        if(action.equalsIgnoreCase("Не обращать на него внимания")) {
-            return scenes.get("пойти в хоббитон").get(0);
-        }
-        if(action.equalsIgnoreCase("Не рисковать")) {
-            return scenes.get("Пойти к таверне").get(0);
-        }
-        if(action.equalsIgnoreCase("Отказаться")) {
+
+        if(!scenes.containsKey(action.toLowerCase())) {
+            if(action.equalsIgnoreCase("Не рисковать")) {
+                return scenes.get("пойти к таверне").get(1);
+            }
             return scenes.get("пойти в хоббитон").get(0);
         }
         return scenes.get(action).get(sceneNumber);

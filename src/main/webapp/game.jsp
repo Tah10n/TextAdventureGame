@@ -12,20 +12,13 @@
 </head>
 <style>
     <%
-    if(request.getAttribute("location") == "Хоббитон") {
-    out.print("body {background-image: url(\"/resources/Hobbiton.jpg\"); background-size: cover; background-repeat: no-repeat;}");
-    }
-    if(request.getAttribute("location") == "Таверна") {
-    out.print("body {background-image: url(\"/resources/Tavern.jpg\"); background-size: cover; background-repeat: no-repeat;}");
-    }
-    if(request.getAttribute("location") == "Одинокая гора") {
-    out.print("body {background-image: url(\"/resources/Mountain.jpg\"); background-size: cover; background-repeat: no-repeat;}");
-    }
-%>
+    String location = request.getAttribute("location").toString();
+    out.print("body {background-image: url(\"/resources/" + location + ".jpg\"); background-size: cover; background-repeat: no-repeat;}");
+    %>
 </style>
 <body>
 <div class="container">
-
+<h1><%= location %></h1>
 
     <p><%= request.getAttribute("description") %>
     </p>

@@ -37,5 +37,5 @@ This project is a text-based adventure game implemented using Java Servlets and 
 3. Deploy the WAR file to Tomcat:
     - Copy the `target/TextAdventureGame.war` file to the `webapps` directory of your Tomcat installation.
 
-4. Start Tomcat and access the application at `http://localhost:8080/TextAdventureGame`.
+4. Start Tomcat and access the application at `http://localhost:8080/`.
 
